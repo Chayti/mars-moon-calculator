@@ -4,15 +4,21 @@ const moonCost = 3000;
 function handleQuantity(planet, operator) {
     let quantity = parseInt(document.getElementById(planet + '-quantity').value);
 
-    if (operator == 'add') quantity++;
-    else {
-        if (quantity < 1) return;
-        quantity--;
+    if (!isNaN(quantity)) {
+        if (operator == 'add') quantity++;
+        else {
+            if (quantity < 1) return;
+            quantity--;
+        }
+
+        document.getElementById(planet + '-quantity').value = quantity;
+
+        calculateJourneyCost(planet, quantity);
     }
-
-    document.getElementById(planet + '-quantity').value = quantity;
-
-    calculateJourneyCost(planet, quantity);
+    else {
+        quantity = 0;
+        document.getElementById(planet + '-quantity').value = quantity;
+    }
 }
 
 function calculateJourneyCost(planet, quantity) {
